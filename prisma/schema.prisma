@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  PENDING
+  INPROGRESS
+  COMPLETE
+}
+
+enum Condition {
+  New
+  Good
+  Needs_Repair
+}
+
+model Room {
+  roomId     Int       @id @default(autoincrement())
+  roomType   String
+  isActive   Boolean
+  FloorNo    Int
+  Condition  Condition
+  Location   String
+  isCreated  DateTime  @default(now())
+  isModified DateTime  @default(now())
+}
+
+model Equipment {
+  equipmentId   Int      @id @default(autoincrement())
+  Location      String
+  equipmentType String
+  warranty      String
+  purchaseDate   DateTime
+  issueHistory  String
+  condition     String
+  qrCode        String
+  isCreated     DateTime @default(now())
+  isModified    DateTime @default(now())
+  isActive      Boolean
+}
+
+model Issue {
+  issueId       Int      @id @default(autoincrement())
+  Location      String
+  equipmentType String
+  warranty      String
+  purchaseDate   DateTime
+  issueHistory  String
+  condition     String
+  qrCode        String
+  isCreated     DateTime @default(now())
+  isModified    DateTime @default(now())
+  isActive      Boolean
+}
+
+model EquipmentType {
+  equipmentTypeId Int      @id @default(autoincrement())
+  Types           String
+  Quantity        Int
+  Title           String
+  Description     String
+  isActive        Boolean
+  dateCreated     DateTime @default(now())
+  dateModified    DateTime @default(now())
+}
+
+model Remarks {
+  remarkId     Int      @id @default(autoincrement())
+  remark       String
+  dateCreated  DateTime @default(now())
+  dateModified DateTime @default(now())
+}
+
+model NotificationAsset {
+  notificationId          Int      @id @default(autoincrement())
+  notificationTitle       String
+  notificationDescription String
+  dateCreated             DateTime @default(now())
+  isActive                Boolean
+}
