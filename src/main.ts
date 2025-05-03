@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AssetManagementModule } from './app.module';
+import { AssetManagementModule } from './AssetManagement.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AssetManagementModule);
