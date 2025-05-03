@@ -18,4 +18,4 @@ import { IssueModule } from './Issue/issue.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AssetManagementModule {}

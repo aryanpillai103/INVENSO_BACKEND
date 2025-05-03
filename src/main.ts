@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AssetManagementModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.enableCors({
-    origin: 'http://localhost:5173', // or your deployed frontend URL
-  });
+  const app = await NestFactory.create(AssetManagementModule);
+  // app.enableCors({
+  //   origin: 'http://localhost:5173', // or your deployed frontend URL
+  // });
   await app.listen(3000);
 }
 bootstrap();
