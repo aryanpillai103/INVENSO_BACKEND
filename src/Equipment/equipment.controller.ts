@@ -1,8 +1,8 @@
-import { Controller, Get , Post , Body, Put ,Param, ParseIntPipe} from "@nestjs/common";
+import { Controller, Get , Post , Body, Put ,Param, Delete ,ParseIntPipe} from "@nestjs/common";
 import { EquipmentService } from "./equipment.service";
 import { Prisma } from "@prisma/client";
 
-@Controller("equipment")
+@Controller("/assetManagement/equipment")
 export class EquipmentController{
     constructor(private readonly equipmentService: EquipmentService){}
     @Get()
@@ -23,5 +23,9 @@ export class EquipmentController{
     @Get(":id")
     getEquipmentbyId(@Param("id", ParseIntPipe) id: number){
         return this.equipmentService.getEquipmentbyId(id)
+    }
+    @Delete(":id")
+    deleteEquipment(@Param("id", ParseIntPipe) id: number){
+        return this.equipmentService.deleteEquipment(id)
     }
 }

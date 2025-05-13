@@ -12,7 +12,7 @@ export class EquipmentService{
 
     createEquipment(body: Prisma.EquipmentCreateInput){
         return this.prisma.equipment.create({
-            data:body
+            data:body,
         });
     }
 
@@ -22,7 +22,9 @@ export class EquipmentService{
     getEquipmentbyId(equipmentId: number ){
         return this.prisma.equipment.findUnique({where: { equipmentId }})
     }
-
+    deleteEquipment(equipmentId: number){
+    return this.prisma.equipment.delete({where: {equipmentId}})
+  }
 
     //fetching equipment type info
     

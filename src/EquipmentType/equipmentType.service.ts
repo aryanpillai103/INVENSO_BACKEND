@@ -22,4 +22,7 @@ export class EquipmentTypeService{
     getEquipmentTypebyId(equipmentTypeId: number ){
         return this.prisma.equipmentType.findUnique({where: { equipmentTypeId }})
     } 
+    deleteEquipmentType(equipmentTypeId: number){
+    return this.prisma.equipmentType.delete({where: {equipmentTypeId}})
+  }
 }

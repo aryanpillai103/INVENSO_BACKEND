@@ -32,13 +32,15 @@ CREATE TABLE `Equipment` (
 -- CreateTable
 CREATE TABLE `Issue` (
     `issueId` INTEGER NOT NULL AUTO_INCREMENT,
+    `username` VARCHAR(191) NOT NULL,
+    `enrollmentNo` VARCHAR(191) NOT NULL,
     `Location` VARCHAR(191) NOT NULL,
     `equipmentType` VARCHAR(191) NOT NULL,
     `warranty` VARCHAR(191) NOT NULL,
     `purchaseDate` DATETIME(3) NOT NULL,
     `issueHistory` VARCHAR(191) NOT NULL,
     `condition` ENUM('New', 'Good', 'Needs_Repair') NOT NULL,
-    `qrCode` VARCHAR(191) NOT NULL,
+    `Status` ENUM('PENDING', 'INPROGRESS', 'COMPLETE') NOT NULL,
     `isCreated` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `isModified` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `isActive` BOOLEAN NOT NULL,

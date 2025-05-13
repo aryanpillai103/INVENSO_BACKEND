@@ -22,4 +22,7 @@ export class RoomService{
     getRoombyId(roomId: number ){
         return this.prisma.room.findUnique({where: { roomId }})
     }
+    deleteRoom(roomId: number){
+    return this.prisma.room.delete({where: {roomId}})
+  }
 }

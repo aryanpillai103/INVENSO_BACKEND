@@ -2,7 +2,7 @@ import { Controller, Get , Post , Body, Put ,Param, ParseIntPipe} from "@nestjs/
 import { RemarkService } from "./remark.service";
 import { Prisma } from "@prisma/client";
 
-@Controller("remark")
+@Controller("/assetManagement/remark")
 export class RemarkController{
     constructor(private readonly remarkService: RemarkService){}
     @Get()

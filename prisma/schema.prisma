@@ -31,30 +31,32 @@ model Room {
 }
 
 model Equipment {
-  equipmentId   Int      @id @default(autoincrement())
+  equipmentId   Int       @id @default(autoincrement())
   Location      String
   equipmentType String
   warranty      String
-  purchaseDate   DateTime
+  purchaseDate  DateTime
   issueHistory  String
   condition     Condition
   qrCode        String
-  isCreated     DateTime @default(now())
-  isModified    DateTime @default(now())
+  isCreated     DateTime  @default(now())
+  isModified    DateTime  @default(now())
   isActive      Boolean
 }
 
 model Issue {
-  issueId       Int      @id @default(autoincrement())
+  issueId       Int       @id @default(autoincrement())
+  username      String
+  enrollmentNo  String
   Location      String
   equipmentType String
   warranty      String
-  purchaseDate   DateTime
+  purchaseDate  DateTime
   issueHistory  String
   condition     Condition
-  qrCode        String
-  isCreated     DateTime @default(now())
-  isModified    DateTime @default(now())
+  Status        Status
+  isCreated     DateTime  @default(now())
+  isModified    DateTime  @default(now())
   isActive      Boolean
 }
 

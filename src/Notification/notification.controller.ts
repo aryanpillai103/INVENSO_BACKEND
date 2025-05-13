@@ -2,7 +2,7 @@ import { Controller, Get , Post , Body, Put ,Param, ParseIntPipe} from "@nestjs/
 import { NotificationService } from "./notification.service";
 import { Prisma } from "@prisma/client";
 
-@Controller("notification")
+@Controller("/assetManagement/notification")
 export class NotificationController{
     constructor(private readonly notificationService: NotificationService){}
     @Get()

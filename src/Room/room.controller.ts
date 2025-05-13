@@ -1,4 +1,4 @@
-import { Controller, Get , Post , Body, Put ,Param, ParseIntPipe} from "@nestjs/common";
+import { Controller, Get , Post , Body, Put ,Param, Delete ,ParseIntPipe} from "@nestjs/common";
 import { RoomService } from "./room.service";
 import { Prisma } from "@prisma/client";
 
@@ -23,5 +23,9 @@ export class RoomController{
     @Get(":id")
     getItem(@Param("id", ParseIntPipe) id: number){
         return this.roomService.getRoombyId(id)
+    }
+    @Delete(":id")
+    deleteRoom(@Param("id", ParseIntPipe) id: number){
+        return this.roomService.deleteRoom(id)
     }
 }
