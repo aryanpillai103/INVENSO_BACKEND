@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
 }
 
@@ -20,7 +20,7 @@ enum Condition {
 }
 
 model Room {
-  roomId     Int       @id @default(autoincrement())
+  roomId     BigInt       @id @default(autoincrement())
   roomType   String
   isActive   Boolean
   FloorNo    Int
@@ -31,7 +31,7 @@ model Room {
 }
 
 model Equipment {
-  equipmentId   Int       @id @default(autoincrement())
+  equipmentId   BigInt       @id @default(autoincrement())
   Location      String
   equipmentType String
   warranty      String
@@ -45,7 +45,7 @@ model Equipment {
 }
 
 model Issue {
-  issueId       Int       @id @default(autoincrement())
+  issueId       BigInt       @id @default(autoincrement())
   username      String
   enrollmentNo  String
   Location      String
@@ -61,7 +61,7 @@ model Issue {
 }
 
 model EquipmentType {
-  equipmentTypeId Int      @id @default(autoincrement())
+  equipmentTypeId BigInt      @id @default(autoincrement())
   Types           String
   Quantity        Int
   Title           String
@@ -72,14 +72,14 @@ model EquipmentType {
 }
 
 model Remarks {
-  remarkId     Int      @id @default(autoincrement())
+  remarkId     BigInt      @id @default(autoincrement())
   remark       String
   dateCreated  DateTime @default(now())
   dateModified DateTime @default(now())
 }
 
 model NotificationAsset {
-  notificationId          Int      @id @default(autoincrement())
+  notificationId          BigInt      @id @default(autoincrement())
   notificationTitle       String
   notificationDescription String
   dateCreated             DateTime @default(now())

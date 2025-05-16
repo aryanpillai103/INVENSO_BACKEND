@@ -2,7 +2,7 @@ import { Controller, Get , Post , Body, Put ,Param, Delete ,ParseIntPipe} from "
 import { RoomService } from "./room.service";
 import { Prisma } from "@prisma/client";
 
-@Controller("room")
+@Controller("/assetManagement/room")
 export class RoomController{
     constructor(private readonly roomService: RoomService){}
     @Get()
