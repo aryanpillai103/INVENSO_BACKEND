@@ -60,15 +60,23 @@ export class IssueService {
   }
 
   async updateIssue(issueId: number, body: Prisma.IssueUpdateInput) {
-    const issue = await this.prisma.issue.update({
-      where: { issueId },
-      data: {
-        ...body,
-        isModified: new Date(), // Optional: update timestamp
-      },
-    });
-    return this.serializeIssue(issue);
+  const existing = await this.prisma.issue.findUnique({ where: { issueId } });
+
+  if (!existing) {
+    throw new Error(`Issue with issueId=${issueId} not found`);
   }
+
+  const issue = await this.prisma.issue.update({
+    where: { issueId },
+    data: {
+      ...body,
+      isModified: new Date(),
+    },
+  });
+
+  return this.serializeIssue(issue);
+}
+
 
   async getIssuebyId(issueId: number) {
     const issue = await this.prisma.issue.findUnique({
