@@ -1,34 +1,7 @@
-// import { Injectable } from "@nestjs/common";
-// import { Prisma } from "@prisma/client";
-// import { PrismaService } from "src/prisma/prisma.service";
 
-// @Injectable()
-// export class EquipmentTypeService{
-//     constructor(private readonly prisma: PrismaService){}
-//     //fetching equipment info
-//     getAllEquipmentType(){
-//         return this.prisma.equipmentType.findMany();
-//     }
-
-//     createEquipmentType(body: Prisma.EquipmentTypeCreateInput){
-//         return this.prisma.equipmentType.create({
-//             data:body
-//         });
-//     }
-
-//     updateEquipmentType(equipmentTypeId: number , body: Prisma.EquipmentTypeUpdateInput){
-//         return this.prisma.equipmentType.update({where: { equipmentTypeId }, data: body},)
-//     }
-//     getEquipmentTypebyId(equipmentTypeId: number ){
-//         return this.prisma.equipmentType.findUnique({where: { equipmentTypeId }})
-//     } 
-//     deleteEquipmentType(equipmentTypeId: number){
-//     return this.prisma.equipmentType.delete({where: {equipmentTypeId}})
-//   }
-// }
-import { Injectable } from "@nestjs/common";
-import { Prisma } from "@prisma/client";
-import { PrismaService } from "src/prisma/prisma.service";
+import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class EquipmentTypeService {
@@ -45,8 +18,20 @@ export class EquipmentTypeService {
 
   async getAllEquipmentType() {
     const types = await this.prisma.equipmentType.findMany();
-    return types.map(type => this.serializeEquipmentType(type));
+    return types.map((type) => this.serializeEquipmentType(type));
   }
+
+  async getEquipmentTypeByCategory(category: string) {
+  const types = await this.prisma.equipmentType.findMany({
+    where: {
+      Types: {
+        contains: category.trim(), // <-- use contains instead of equals
+        mode: 'insensitive',
+      },
+    },
+  });
+  return types.map((type) => this.serializeEquipmentType(type));
+}
 
   async createEquipmentType(body: Prisma.EquipmentTypeCreateInput) {
     const type = await this.prisma.equipmentType.create({
@@ -55,12 +40,15 @@ export class EquipmentTypeService {
     return this.serializeEquipmentType(type);
   }
 
-  async updateEquipmentType(equipmentTypeId: number, body: Prisma.EquipmentTypeUpdateInput) {
+  async updateEquipmentType(
+    equipmentTypeId: number,
+    body: Prisma.EquipmentTypeUpdateInput,
+  ) {
     const updated = await this.prisma.equipmentType.update({
       where: { equipmentTypeId },
       data: {
         ...body,
-        dateModified: new Date(), // auto-update modified timestamp
+        dateModified: new Date(),
       },
     });
     return this.serializeEquipmentType(updated);
