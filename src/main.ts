@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AssetManagementModule);
   app.useGlobalInterceptors(new BigIntInterceptor());
   app.enableCors({
-    origin: 'http://localhost:5173', // or your deployed frontend URL
+    origin: 'https://invenso-frontend-hh5z.vercel.app/', // or your deployed frontend URL
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type, x-admin-token',
   });
